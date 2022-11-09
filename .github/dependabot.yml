@@ -1,0 +1,10 @@
+version: 2
+
+updates:
+  - package-ecosystem: "terraform"
+    directory:
+      - "record-alias-alb/"
+      - "/"
+      - "record-alias-cdn/"
+    schedule:
+      interval: "daily"
