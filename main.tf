@@ -21,7 +21,7 @@ module "alb_records" {
   zone_id                    = module.zone_and_records.zone_id
   name                       = each.value.name
   alb                        = each.value.alb
-  geolocation_routing_policy = try(each.value.geolocation_routing_policy, null)
+  geolocation_routing_policy = try(each.value.geolocation_routing_policy, {})
   set_identifier             = try(each.value.set_identifier, null)
 }
 
