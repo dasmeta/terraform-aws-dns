@@ -5,7 +5,7 @@ resource "aws_route53_record" "www" {
   set_identifier = var.set_identifier
 
   alias {
-    name                   = data.aws_lb.alb.dns_name
+    name                   = "dualstack.${data.aws_lb.alb.dns_name}"
     zone_id                = data.aws_lb.alb.zone_id
     evaluate_target_health = true
   }
