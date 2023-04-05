@@ -20,7 +20,7 @@ jobs:
           - /
           - record-alias-alb/
           - record-alias-cdn/
-     
+
     steps:
     - uses: dasmeta/reusable-actions-workflows/tflint@main
       with:
