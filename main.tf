@@ -1,7 +1,6 @@
 # create zone and non alb/cloudfront dns records
 module "zone_and_records" {
-  source  = "dasmeta/modules/aws//modules/route53"
-  version = "0.25.2"
+  source = "./modules/route53"
 
   zone        = var.zone
   create_zone = var.create_zone
@@ -14,7 +13,7 @@ module "zone_and_records" {
 
 # alb records
 module "alb_records" {
-  source = "./record-alias-alb"
+  source = "./modules/record-alias-alb"
 
   for_each = { for record in var.records : "${record.name}-${record.set_identifier == null ? "primary" : record.set_identifier}" => record if record.target_type == "alb" }
 
@@ -27,7 +26,7 @@ module "alb_records" {
 
 # cloudfront records
 module "cdn_records" {
-  source = "./record-alias-cdn"
+  source = "./modules/record-alias-cdn"
 
   for_each = { for record in var.records : record.name => record if record.target_type == "cdn" }
 
