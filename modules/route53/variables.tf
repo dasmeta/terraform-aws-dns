@@ -9,6 +9,12 @@ variable "create_zone" {
   description = "controlls whether create Route53 zone or use already created zone for just generating new records"
 }
 
+variable "private_zone" {
+  type        = bool
+  default     = false
+  description = "If Route53 zone is private set var is true"
+}
+
 variable "records" {
   type = list(object({
     name  = string,
