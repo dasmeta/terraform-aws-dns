@@ -113,6 +113,7 @@ No requirements.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_create_zone"></a> [create\_zone](#input\_create\_zone) | controlls whether create Route53 zone or use already created zone for just generating new records | `bool` | `true` | no |
+| <a name="input_private_zone"></a> [private\_zone](#input\_private\_zone) | If Route53 zone is private set var is true | `bool` | `false` | no |
 | <a name="input_records"></a> [records](#input\_records) | dns records name, type and value list | <pre>list(object({<br>    name  = string,<br>    type  = string,<br>    value = set(string)<br>  }))</pre> | `[]` | no |
 | <a name="input_ttl"></a> [ttl](#input\_ttl) | TTL Time | `string` | `"30"` | no |
 | <a name="input_zone"></a> [zone](#input\_zone) | Route53 zone name | `string` | n/a | yes |

@@ -2,8 +2,9 @@
 module "zone_and_records" {
   source = "./modules/route53"
 
-  zone        = var.zone
-  create_zone = var.create_zone
+  zone         = var.zone
+  create_zone  = var.create_zone
+  private_zone = var.private_zone
   records = [for record in var.records : {
     name  = record.name
     type  = lookup(record, "type", "A")

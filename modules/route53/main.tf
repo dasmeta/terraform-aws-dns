@@ -8,7 +8,8 @@ module "zone" {
 data "aws_route53_zone" "main" {
   count = var.create_zone ? 0 : 1
 
-  name = var.zone
+  name         = var.zone
+  private_zone = var.private_zone
 }
 
 resource "aws_route53_record" "add_record" {

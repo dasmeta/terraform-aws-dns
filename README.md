@@ -47,6 +47,7 @@ No resources.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_create_zone"></a> [create\_zone](#input\_create\_zone) | Create zone or use existing zone as data | `bool` | `false` | no |
+| <a name="input_private_zone"></a> [private\_zone](#input\_private\_zone) | If Route53 zone is private set var is true | `bool` | `false` | no |
 | <a name="input_records"></a> [records](#input\_records) | DNS Record map | <pre>list(object({<br>    name        = string<br>    target_type = optional(string, "") # for cdn/alb record easy creation can be "alb", "cdn"<br><br>    type  = optional(string, "A")   # type for standard records creation, can be "A", "CNAME", "TEXT", and etc<br>    value = optional(list(any), []) # value for standard records creation<br><br>    alb = optional(string, null) # the name of loadbalancer<br><br>    distribution_id = optional(string, null) # cloudfront distribution id<br><br>    set_identifier : optional(string, null)        # for setting custom identifier in case we have multiple records(geo routing) for same domain<br>    geolocation_routing_policy : optional(any, {}) # use to define custom routing for each geo location<br>  }))</pre> | `[]` | no |
 | <a name="input_zone"></a> [zone](#input\_zone) | DNS Zone name record will be injected into | `string` | n/a | yes |
 
