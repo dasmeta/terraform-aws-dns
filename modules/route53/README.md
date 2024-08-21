@@ -99,7 +99,7 @@ No requirements.
 
 | Name | Source | Version |
 |------|--------|---------|
-| <a name="module_zone"></a> [zone](#module\_zone) | ./zone | n/a |
+| <a name="module_zone"></a> [zone](#module\_zone) | ../zone | n/a |
 
 ## Resources
 
@@ -123,5 +123,6 @@ No requirements.
 | Name | Description |
 |------|-------------|
 | <a name="output_arn"></a> [arn](#output\_arn) | Returns zone arn. |
+| <a name="output_name_servers"></a> [name\_servers](#output\_name\_servers) | Returns zone name servers list. |
 | <a name="output_zone_id"></a> [zone\_id](#output\_zone\_id) | Returns zone id. |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

@@ -1,5 +1,5 @@
 module "zone" {
-  source = "./zone"
+  source = "../zone"
   count  = var.create_zone ? 1 : 0
 
   name = var.zone
