@@ -2,6 +2,11 @@
 Allows to create aws route53 zone and record with simple manner,
 supports alb/loadbalancer and cdn/cloudfront cases
 
+# for enabling git pre-commit/commit-msg hooks run this(other repos will also have it set as it set globally)
+```sh
+git config --global core.hooksPath ./githooks
+```
+
 # simple example with alb
 ```hcl
 module "dns" {
@@ -55,5 +60,6 @@ No resources.
 
 | Name | Description |
 |------|-------------|
+| <a name="output_ns_delegation_set"></a> [ns\_delegation\_set](#output\_ns\_delegation\_set) | The NS records list for zone to use as delegation set |
 | <a name="output_zone_id"></a> [zone\_id](#output\_zone\_id) | zone id |
 <!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->

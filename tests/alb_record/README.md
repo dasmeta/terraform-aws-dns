@@ -13,7 +13,6 @@
 | Name | Version |
 |------|---------|
 | <a name="provider_aws"></a> [aws](#provider\_aws) | >= 3.41 |
-| <a name="provider_test"></a> [test](#provider\_test) | n/a |
 
 ## Modules
 
@@ -28,7 +27,6 @@
 | [aws_default_subnet.default_az_a](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_subnet) | resource |
 | [aws_default_subnet.default_az_b](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/default_subnet) | resource |
 | [aws_lb.test](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/lb) | resource |
-| test_assertions.dummy | resource |
 
 ## Inputs
 
