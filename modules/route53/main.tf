@@ -2,7 +2,8 @@ module "zone" {
   source = "../zone"
   count  = var.create_zone ? 1 : 0
 
-  name = var.zone
+  name    = var.zone
+  vpc_ids = var.private_zone ? var.vpc_ids : []
 }
 
 data "aws_route53_zone" "main" {

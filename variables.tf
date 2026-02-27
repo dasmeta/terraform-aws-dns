@@ -15,6 +15,12 @@ variable "private_zone" {
   description = "If Route53 zone is private set var is true"
 }
 
+variable "vpc_ids" {
+  type        = list(string)
+  description = "List of VPC IDs to associate with the Route53 Zone, being used if only private_zone and create_zone are true"
+  default     = []
+}
+
 variable "records" {
   type = list(object({
     name        = string

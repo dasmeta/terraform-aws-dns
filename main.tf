@@ -5,6 +5,7 @@ module "zone_and_records" {
   zone         = var.zone
   create_zone  = var.create_zone
   private_zone = var.private_zone
+  vpc_ids      = var.vpc_ids
   records = [for record in var.records : {
     name  = record.name
     type  = lookup(record, "type", "A")
