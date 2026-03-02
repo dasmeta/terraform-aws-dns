@@ -26,6 +26,7 @@ No modules.
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_name"></a> [name](#input\_name) | Route53 Zone name | `string` | n/a | yes |
+| <a name="input_vpc_ids"></a> [vpc\_ids](#input\_vpc\_ids) | List of VPC IDs to associate with the Route53 Zone, if passed the zone will be private | `list(string)` | `[]` | no |
 
 ## Outputs
 
