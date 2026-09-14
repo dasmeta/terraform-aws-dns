@@ -10,6 +10,7 @@ module "zone_and_records" {
     name  = record.name
     type  = lookup(record, "type", "A")
     value = coalesce(lookup(record, "value", null), [])
+    ttl   = record.ttl
   } if !contains(["alb", "cdn"], record.target_type)]
 }
 

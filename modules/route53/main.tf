@@ -14,11 +14,11 @@ data "aws_route53_zone" "main" {
 }
 
 resource "aws_route53_record" "add_record" {
-  for_each = { for record in var.records : record.name => record }
+  for_each = { for record in var.records : "${record.name}-${record.type}" => record }
 
   zone_id = var.create_zone ? module.zone[0].zone_id : data.aws_route53_zone.main[0].zone_id
   name    = each.value.name
   type    = each.value.type
   records = each.value.value
-  ttl     = var.ttl
+  ttl     = coalesce(each.value.ttl, var.ttl)
 }

@@ -1,0 +1,7 @@
+.git/
+.specify/
+specs/
+**/.terraform/**
+**/*.tfstate*
+**/*.tfplan
+node_modules/
