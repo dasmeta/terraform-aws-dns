@@ -35,7 +35,7 @@ module "route53" {
 
 ## Example 3. Create zone and more that one records
 
-Note. Your record names must be unique
+Record name/type pairs must be unique. A and TXT records can share the same name.
 
 ```terraform
 module "route53" {
@@ -84,6 +84,50 @@ module "route53" {
 }
 ```
 
+## Individual record TTL
+
+Each record accepts an optional numeric `ttl`, in seconds. An omitted or null
+record TTL falls back to this submodule's existing `ttl` input (default `"30"`).
+Existing callers setting a shared TTL retain that behavior:
+
+```hcl
+ttl = "120"
+records = [
+  {
+    name  = "example.com"
+    type  = "A"
+    value = ["192.0.2.10"]
+  },
+  {
+    name  = "example.com"
+    type  = "TXT"
+    value = ["verification=example"]
+    ttl   = 300
+  },
+]
+```
+
+Here the A TTL is 120 and the TXT TTL is 300. Combine multiple values for the
+same name/type into one record rather than repeating the pair.
+
+## State migration
+
+All standard record instance keys change from `<name>` to `<name>-<type>`.
+For a direct caller using `module "route53"`, add a consumer-specific move for
+each existing record before applying the upgrade:
+
+```hcl
+moved {
+  from = module.route53.aws_route53_record.add_record["example.com"]
+  to   = module.route53.aws_route53_record.add_record["example.com-A"]
+}
+```
+
+Use the actual old type and full module path. Review the plan and verify that
+existing records are not deleted/recreated because of the key change. See the
+[root migration guide](../../README.md#upgrading-existing-standard-records) for
+the equivalent state command and root-wrapper paths.
+
 <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
 ## Requirements
 
@@ -114,7 +158,7 @@ No requirements.
 |------|-------------|------|---------|:--------:|
 | <a name="input_create_zone"></a> [create\_zone](#input\_create\_zone) | controlls whether create Route53 zone or use already created zone for just generating new records | `bool` | `true` | no |
 | <a name="input_private_zone"></a> [private\_zone](#input\_private\_zone) | If Route53 zone is private set var is true | `bool` | `false` | no |
-| <a name="input_records"></a> [records](#input\_records) | dns records name, type and value list | <pre>list(object({<br/>    name  = string,<br/>    type  = string,<br/>    value = set(string)<br/>  }))</pre> | `[]` | no |
+| <a name="input_records"></a> [records](#input\_records) | dns records name, type and value list | <pre>list(object({<br/>    name  = string,<br/>    type  = string,<br/>    value = set(string)<br/>    ttl   = optional(number)<br/>  }))</pre> | `[]` | no |
 | <a name="input_ttl"></a> [ttl](#input\_ttl) | TTL Time | `string` | `"30"` | no |
 | <a name="input_vpc_ids"></a> [vpc\_ids](#input\_vpc\_ids) | List of VPC IDs to associate with the Route53 Zone, being used if only private\_zone and create\_zone are true | `list(string)` | `[]` | no |
 | <a name="input_zone"></a> [zone](#input\_zone) | Route53 zone name | `string` | n/a | yes |

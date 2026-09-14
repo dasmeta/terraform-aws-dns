@@ -26,6 +26,7 @@ variable "records" {
     name  = string,
     type  = string,
     value = set(string)
+    ttl   = optional(number)
   }))
   description = "dns records name, type and value list"
   default     = []

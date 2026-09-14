@@ -28,6 +28,7 @@ variable "records" {
 
     type  = optional(string, "A")   # type for standard records creation, can be "A", "CNAME", "TEXT", and etc
     value = optional(list(any), []) # value for standard records creation
+    ttl   = optional(number, 30)    # TTL in seconds for standard records
 
     alb = optional(string, null) # the name of loadbalancer
 
